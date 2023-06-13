@@ -1,1 +1,1 @@
-# league
+# KodingWorks League

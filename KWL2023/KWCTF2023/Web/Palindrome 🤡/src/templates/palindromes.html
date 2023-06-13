@@ -1,0 +1,43 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Make Your Own Palindrome {% endblock %}
+
+{% block content %}
+<div class="row gap-5">
+  <div class="col">
+    <h2>Make your own!</h2>
+    <form action="/submit_palindrome" method="POST">
+      <div class="mb-3">
+        <label class="form-label">Kata - kata</label>
+        <input type="text" class="form-control" placeholder="kasur rusak" name="sentence">
+      </div>
+      {% if messages['error'] %}
+      <div class="alert alert-danger" role="alert">
+        {{ messages['error'] }}
+      </div>
+      {% elif messages['success'] %}
+      <div class="alert alert-success" role="alert">
+        {{ messages['success'] }}
+      </div>
+      {% endif %}
+      <div class="d-grid">
+        <button class="btn btn-primary" type="submit">Buat</button>
+      </div>
+    </form>
+  </div>
+  <div class="col border rounded p-5">
+    <h1>Kalimatmu</h1>
+    {% if not palindromes %}
+    <div class="alert alert-info" role="alert">
+      Kata - kata palindrome yang kamu buat masih kosong!
+    </div>
+    {% else %}
+    <ul class="list-group">
+      {% for _, _, sentence in palindromes %}
+      <li class="list-group-item">{{ loop.index }}. {{ sentence }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,8 @@
+version: '3.3'
+services:
+  app:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "10835:1337"
+    network_mode: bridge
